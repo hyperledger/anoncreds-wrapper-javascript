@@ -1,0 +1,27 @@
+{
+  "name": "@hyperledger/anoncreds-shared",
+  "version": "0.3.0",
+  "license": "Apache-2.0",
+  "description": "Anoncreds wrapper library with NodeJS and React Native",
+  "main": "build/index",
+  "source": "src/index",
+  "homepage": "https://github.com/hyperledger/anoncreds-wrapper-javascript/tree/main/packages/anoncreds-shared",
+  "repository": {
+    "url": "https://github.com/hyperledger/anoncreds-wrapper-javascript",
+    "type": "git",
+    "directory": "packages/anoncreds-shared"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["build"],
+  "scripts": {
+    "check-types": "pnpm compile --noEmit",
+    "build": "pnpm clean && pnpm compile",
+    "clean": "rimraf -rf ./build",
+    "compile": "tsc -p ./tsconfig.build.json"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
