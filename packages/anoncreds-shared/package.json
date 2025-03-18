@@ -14,7 +14,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["build"],
+  "files": ["build", "installBinary.js"],
   "scripts": {
     "check-types": "pnpm compile --noEmit",
     "build": "pnpm clean && pnpm compile",
@@ -23,5 +23,8 @@
   },
   "devDependencies": {
     "typescript": "catalog:"
+  },
+  "dependencies": {
+    "tar": "^7.4.3"
   }
 }

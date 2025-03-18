@@ -26,18 +26,18 @@
     "ios/Anoncreds.xcodeproj/project.pbxproj",
     "cpp/**/*.cpp",
     "cpp/**/*.h",
-    "anoncreds.podspec"
+    "anoncreds.podspec",
+    "scripts"
   ],
   "scripts": {
     "check-types": "pnpm compile --noEmit",
     "build": "pnpm clean && pnpm compile",
     "clean": "rimraf -rf ./build",
     "compile": "tsc -p ./tsconfig.build.json",
-    "install": "node-pre-gyp install"
+    "install": "node scripts/install.js"
   },
   "dependencies": {
-    "@hyperledger/anoncreds-shared": "workspace:*",
-    "@mapbox/node-pre-gyp": "^1.0.11"
+    "@hyperledger/anoncreds-shared": "workspace:*"
   },
   "devDependencies": {
     "react": "18.2.0",
@@ -49,10 +49,8 @@
     "react-native": ">= 0.71"
   },
   "binary": {
-    "module_name": "anoncreds",
-    "module_path": "native",
-    "remote_path": "v0.2.0",
-    "host": "https://github.com/hyperledger/anoncreds-rs/releases/download/",
-    "package_name": "library-ios-android.tar.gz"
+    "version": "v0.2.0",
+    "host": "https://github.com/hyperledger/anoncreds-rs/releases/download",
+    "packageName": "library-ios-android.tar.gz"
   }
 }
