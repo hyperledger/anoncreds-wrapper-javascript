@@ -3,10 +3,10 @@
 #
 
 repository:
-  name: anoncreds-rs
-  description: anoncreds-rs
+  name: anoncreds-wrapper-javascript
+  description: Node.JS and React Native wrapper for AnonCreds RS
   homepage: https://wiki.hyperledger.org/display/anoncreds
-  default_branch: main 
+  default_branch: main
   has_downloads: false
   has_issues: true
   has_projects: false
