@@ -18,7 +18,7 @@ import {
 
 import { setup } from './utils'
 
-import { deepStrictEqual, ok, strict, strictEqual, throws } from 'node:assert'
+import { deepStrictEqual, ok, strictEqual, throws } from 'node:assert'
 import { before, describe, test } from 'node:test'
 
 describe('API', () => {

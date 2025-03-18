@@ -3,8 +3,7 @@
   "version": "0.3.0",
   "license": "Apache-2.0",
   "description": "Anoncreds wrapper library with NodeJS and React Native",
-  "main": "build/index",
-  "source": "src/index",
+  "main": "src/index",
   "homepage": "https://github.com/hyperledger/anoncreds-wrapper-javascript/tree/main/packages/anoncreds-shared",
   "repository": {
     "url": "https://github.com/hyperledger/anoncreds-wrapper-javascript",
@@ -12,7 +11,8 @@
     "directory": "packages/anoncreds-shared"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "build/index"
   },
   "files": ["build", "installBinary.js"],
   "scripts": {
