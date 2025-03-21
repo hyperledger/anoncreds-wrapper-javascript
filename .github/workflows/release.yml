@@ -84,7 +84,7 @@ jobs:
           # this ensures there's always a patch release created
           cat << 'EOF' > .changeset/snapshot-template-changeset.md
           ---
-          '@openwallet-foundation/anoncreds-shared': patch
+          '@hyperledger/anoncreds-shared': patch
           ---
 
           snapshot release
