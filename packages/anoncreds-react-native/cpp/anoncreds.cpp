@@ -136,16 +136,15 @@ jsi::Value revocationRegistryDefinitionFromJson(jsi::Runtime &rt,
 };
 
 jsi::Value revocationRegistryFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_revocation_registry_from_json(b, &out);
+  ErrorCode code = anoncreds_revocation_registry_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };

@@ -608,4 +608,30 @@ jsiToValue<FfiList_FfiNonrevokedIntervalOverride>(jsi::Runtime &rt,
                              "Array<NonRevokedIntervalOverride>");
 }
 
+template <>
+ByteBuffer jsiToValue<ByteBuffer>(jsi::Runtime &rt, jsi::Object &options,
+                                  const char *name, bool optional) {
+  ByteBuffer buffer;
+  
+  if (optional && !options.hasProperty(rt, name)) {
+    buffer.data = nullptr;
+    buffer.len = 0;
+    return buffer;
+  }
+
+  auto value = options.getProperty(rt, name);
+  if (value.isString()) {
+    std::string str = value.asString(rt).utf8(rt);
+    size_t len = str.size();
+    uint8_t *c = new uint8_t[len + 1];
+    std::copy(str.begin(), str.end(), c);
+    c[len] = '\0';
+    buffer.data = c;
+    buffer.len = len;
+    return buffer;
+  }
+
+  throw jsi::JSError(rt, errorPrefix + name + errorInfix + "string");
+}
+
 } // namespace anoncredsTurboModuleUtility
