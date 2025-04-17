@@ -120,17 +120,15 @@ ByteBuffer stringToByteBuffer(std::string str) {
 
 jsi::Value revocationRegistryDefinitionFromJson(jsi::Runtime &rt,
                                                 jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
 
-  ByteBuffer b = stringToByteBuffer(json);
-  ErrorCode code = anoncreds_revocation_registry_definition_from_json(b, &out);
-
+  ErrorCode code = anoncreds_revocation_registry_definition_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
-  // free data
-  delete[] b.data;
+  // Free memory
+  delete[] json.data;
 
   return returnValue;
 };
@@ -151,202 +149,188 @@ jsi::Value revocationRegistryFromJson(jsi::Runtime &rt, jsi::Object options) {
 
 jsi::Value revocationStatusListFromJson(jsi::Runtime &rt,
                                                 jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
 
-  ByteBuffer b = stringToByteBuffer(json);
-  ErrorCode code = anoncreds_revocation_status_list_from_json(b, &out);
-
+  ErrorCode code = anoncreds_revocation_status_list_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
-  // free data
-  delete[] b.data;
+  // Free memory
+  delete[] json.data;
 
   return returnValue;
 };
 
 
 jsi::Value presentationFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_presentation_from_json(b, &out);
+  ErrorCode code = anoncreds_presentation_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value presentationRequestFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_presentation_request_from_json(b, &out);
+  ErrorCode code = anoncreds_presentation_request_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialOfferFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_offer_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_offer_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value schemaFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_schema_from_json(b, &out);
+  ErrorCode code = anoncreds_schema_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialRequestFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_request_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_request_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialRequestMetadataFromJson(jsi::Runtime &rt,
                                              jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_request_metadata_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_request_metadata_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value revocationRegistryDefinitionPrivateFromJson(jsi::Runtime &rt,
                                                        jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
   ErrorCode code =
-      anoncreds_revocation_registry_definition_private_from_json(b, &out);
+      anoncreds_revocation_registry_definition_private_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value revocationStateFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_revocation_state_from_json(b, &out);
+  ErrorCode code = anoncreds_revocation_state_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialDefinitionFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_definition_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_definition_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value credentialDefinitionPrivateFromJson(jsi::Runtime &rt,
                                                jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_credential_definition_private_from_json(b, &out);
+  ErrorCode code = anoncreds_credential_definition_private_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value keyCorrectnessProofFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_key_correctness_proof_from_json(b, &out);
+  ErrorCode code = anoncreds_key_correctness_proof_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
@@ -682,31 +666,29 @@ jsi::Value revocationRegistryDefinitionGetAttribute(jsi::Runtime &rt,
 };
 
 jsi::Value w3cPresentationFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_w3c_presentation_from_json(b, &out);
+  ErrorCode code = anoncreds_w3c_presentation_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
 
 jsi::Value w3cCredentialFromJson(jsi::Runtime &rt, jsi::Object options) {
-  auto json = jsiToValue<std::string>(rt, options, "json");
+  auto json = jsiToValue<ByteBuffer>(rt, options, "json");
 
   ObjectHandle out;
-  ByteBuffer b = stringToByteBuffer(json);
 
-  ErrorCode code = anoncreds_w3c_credential_from_json(b, &out);
+  ErrorCode code = anoncreds_w3c_credential_from_json(json, &out);
   auto returnValue = createReturnValue(rt, code, &out);
 
   // Free memory
-  delete[] b.data;
+  delete[] json.data;
 
   return returnValue;
 };
