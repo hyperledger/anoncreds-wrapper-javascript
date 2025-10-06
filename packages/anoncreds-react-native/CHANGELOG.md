@@ -1,5 +1,12 @@
 # @hyperledger/anoncreds-react-native
 
+## 0.3.3
+
+### Patch Changes
+
+- d81572f: fix(react-native): wrapper page alignment
+  - @hyperledger/anoncreds-shared@0.3.3
+
 ## 0.3.2
 
 ### Patch Changes
