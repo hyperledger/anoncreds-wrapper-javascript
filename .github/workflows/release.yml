@@ -29,9 +29,10 @@ jobs:
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
-      # Ensure npm >= 11.5.1 for trusted publishing support
+      # Ensure npm >= 11.5.1 for trusted publishing support.
+      # Automatically fetch future security updates
       - name: Update npm
-        run: npm install -g npm@11.5.1
+        run: npm install -g npm@^11.5.1
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
