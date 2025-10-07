@@ -11,6 +11,9 @@ jobs:
   release-stable:
     runs-on: ubuntu-24.04
     name: Release Stable
+    permissions:
+      contents: write
+      id-token: write # Required for npm trusted publishing
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
@@ -18,11 +21,18 @@ jobs:
         uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
+
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm >= 11.5.1 for trusted publishing support.
+      # Automatically fetch future security updates
+      - name: Update npm
+        run: npm install -g npm@^11.5.1
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -37,7 +47,6 @@ jobs:
           version: pnpm changeset-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Get current package version
         id: get_version
@@ -54,32 +63,32 @@ jobs:
     name: Release Unstable
     needs: release-stable
     if: always() && github.event_name == 'push' && needs.release-stable.outputs.published == 'false'
+    permissions:
+      contents: write
+      id-token: write # Required for npm trusted publishing
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
+
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm >= 11.5.1 for trusted publishing support
+      - name: Update npm
+        run: npm install -g npm@11.5.1
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Creating .npmrc
-        run: |
-          cat << EOF > ".npmrc"
-            //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          EOF
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Create unstable release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           # this ensures there's always a patch release created
           cat << 'EOF' > .changeset/snapshot-template-changeset.md
