@@ -37,7 +37,7 @@
     "typescript": "catalog:"
   },
   "binary": {
-    "version": "v0.2.2",
+    "version": "v0.2.3",
     "host": "https://github.com/hyperledger/anoncreds-rs/releases/download",
     "packageName": "library-{platform}-{arch}.tar.gz"
   },

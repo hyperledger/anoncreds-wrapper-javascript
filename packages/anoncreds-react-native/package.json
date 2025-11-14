@@ -49,7 +49,7 @@
     "react-native": ">= 0.71"
   },
   "binary": {
-    "version": "v0.2.2",
+    "version": "v0.2.3",
     "host": "https://github.com/hyperledger/anoncreds-rs/releases/download",
     "packageName": "library-ios-android.tar.gz"
   }
