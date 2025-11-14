@@ -1,5 +1,12 @@
 # @hyperledger/anoncreds-nodejs
 
+## 0.3.4
+
+### Patch Changes
+
+- aa9f0d2: update to use anoncreds-rs v0.2.3
+  - @hyperledger/anoncreds-shared@0.3.4
+
 ## 0.3.3
 
 ### Patch Changes
